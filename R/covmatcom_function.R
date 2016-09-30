@@ -4,6 +4,7 @@
 #| __________________________________________________________________________| 
 #  
 #' R function Comparing Two Datasets' Covariance Matrices 
+#'
 
 #' This function takes as input two datasets with measurements (rows) for a
 #' set of variables (columns; the same number of variables in the two 

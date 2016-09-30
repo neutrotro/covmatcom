@@ -2,7 +2,18 @@
 % Please edit documentation in R/covmatcom_function.R
 \name{covmatcom}
 \alias{covmatcom}
-\title{R function for the comparison of two covariance or symmetrical matrices.}
+\title{R function Comparing Two Datasets' Covariance Matrices 
+This function takes as input two datasets with measurements (rows) for a
+set of variables (columns; the same number of variables in the two 
+datasets), calculates the two datasets' covariance matrices, measures the
+overall differentiation between these matrices and separates the  
+contribution of matrix orientation and matrix shape to the differentiation.
+The function produces as output: i) s1, an overall measure of 
+differentiation, ii) s2, measuring the contribution of differences in 
+orientation to s1, and iii) s3, measuring the contribution of differences
+in matrix shape to s1.
+See:  Garcia C. 2012. A simple procedure for the comparison of covariance 
+  matrices. BMC Evolutionary Biology 12:1-17 for details.}
 \usage{
 covmatcom(data.a, data.b, nci.boo = 0)
 }
@@ -17,9 +28,13 @@ intervals. If = 0, no C.I. are calculated. Defaults to  = 0.}
 \value{
 A list including "NumberOfVariables", "s_statistics" and
                           "Null_Dist_Upper_Quantiles"
-covmatcom_function()
+   NOTE: The function obtains these null distribution quantiles by 
+ calculating the s statistics for pairs of bootstrap resamples taken from a
+  single data set. A set of s statistics' quantiles is obtained for dataA 
+ and another for dataB.
 }
 \description{
+R function Comparing Two Datasets' Covariance Matrices 
 This function takes as input two datasets with measurements (rows) for a
 set of variables (columns; the same number of variables in the two 
 datasets), calculates the two datasets' covariance matrices, measures the

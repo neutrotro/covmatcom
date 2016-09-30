@@ -31,7 +31,14 @@
 #' @return A list including "NumberOfVariables", "s_statistics" and
 #'                           "Null_Dist_Upper_Quantiles"
 
-#' covmatcom_function()
+#'    NOTE: The function obtains these null distribution quantiles by 
+#'  calculating the s statistics for pairs of bootstrap resamples taken from a
+#'   single data set. A set of s statistics' quantiles is obtained for dataA 
+#'  and another for dataB.
+
+
+
+# covmatcom_function()
 # _____________________________________________________________________________ 
 #|                                                                             | 
 #| Carlos Garcia                                                               | 

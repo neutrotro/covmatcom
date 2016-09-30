@@ -1,0 +1,19 @@
+Package: covmatcom
+Title: Compares Two Datasets' Covariance Matrices 
+Version: 0.0.0.9000
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: The function takes as input two datasets with measurements (rows)
+             for a set of variables (columns; the same number of variables
+             in the two datasets), calculates the two datasets' covariance
+             matrices, measures the overall differentiation between these
+             matrices and separates the contribution of matrix orientation
+             and matrix shape to the differentiation. The function produces
+             as output: i) s1, an overall measure of differentiation, ii) s2,
+             measuring the contribution of differences in orientation to s1,
+             and iii) s3, measuring the contribution of differences in matrix
+             shape to s1.
+Depends: R (>= 3.3.1)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1.9000

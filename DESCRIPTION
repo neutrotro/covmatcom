@@ -1,7 +1,7 @@
 Package: covmatcom
 Title: Compares Two Datasets' Covariance Matrices 
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: person("Carlos", "Garcia", email = "carlos.garcia.suarez@usc.es", role = c("aut", "cre"))
 Description: The function takes as input two datasets with measurements (rows)
              for a set of variables (columns; the same number of variables
              in the two datasets), calculates the two datasets' covariance
@@ -11,7 +11,27 @@ Description: The function takes as input two datasets with measurements (rows)
              as output: i) s1, an overall measure of differentiation, ii) s2,
              measuring the contribution of differences in orientation to s1,
              and iii) s3, measuring the contribution of differences in matrix
-             shape to s1.
+             shape to s1. See:  Garcia C. 2012. A simple procedure for the
+             comparison of covariance matrices. BMC Evolutionary Biology 
+             12:1-17 for details. These s "squared" statistics are sensitive
+             to the distribution of the differentiation across eigenvectors.
+             The maximum s1 value (= 1) occurs in  the situation of "maximum
+             concentration" of the differentiation, where one eigenvector
+             explains all variation in the first dataset and another, 
+             orthogonal eigenvector explains all variation in the second
+             dataset. Situations with more than one greater than zero
+             eigenvalues per dataset result in s1 values <1, even when the
+             two eigenvector sets are mutually orthogonal. This is due to the
+             use of squared values in the calculation of the s set of
+             statistics. I am grateful to Dr Evan Remington for calling my
+             attention to this algorithm limitation. As an alternative for
+             cases in which detecting matrix orthogonality is important, 
+             covMcom calculates absolute value-based versions of the same
+             s  tatistics (s1Abs, s2Abs, s3Abs) not dependent on eigenvalue
+             distributions and producing maximum s1Abs values (s1Abs = 1) in
+             all orthogonal situations. The s1Abs values are decomposed in
+             matrix orientation (s2Abs) and matrix shape contributions
+             (s3Abs).  
 Depends: R (>= 3.3.1)
 License: GPL-3
 Encoding: UTF-8

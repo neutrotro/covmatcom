@@ -15,12 +15,13 @@ covmatcom(data.a, data.b, nci.boo = 0)
 intervals. If = 0, no C.I. are calculated. Defaults to  = 0.}
 }
 \value{
-A list including "NumberOfVariables", "s_statistics" and
-                          "Null_Dist_Upper_Quantiles"
+A list including "NumberOfVariables", "s_squared_statistics", 
+  "s_squared_Null_Dist_Upper_Quantiles", "s_absolute_statistics" and
+  "s_absolute_Null_Dist_Upper_Quantiles")
    NOTE: The function obtains these null distribution quantiles by 
- calculating the s statistics for pairs of bootstrap resamples taken from a
-  single data set. A set of s statistics' quantiles is obtained for dataA 
- and another for dataB.
+ calculating the s and s_Abs statistics for pairs of bootstrap resamples
+ taken from a single data set. A set of s and s_Abs statistics' quantiles
+ is obtained for dataA and another for dataB.
 }
 \description{
 This function takes as input two datasets with measurements (rows) for a
@@ -33,14 +34,45 @@ differentiation, ii) s2, measuring the contribution of differences in
 orientation to s1, and iii) s3, measuring the contribution of differences
 in matrix shape to s1.
 See:  Garcia C. 2012. A simple procedure for the comparison of covariance 
-  matrices. BMC Evolutionary Biology 12:1-17 for details.
+  matrices. BMC Evolutionary Biology 12:1-17 for details. 
+These s "squared" statistics are sensitive to the distribution of the        
+differentiation across eigenvectors. The maximum s1 value (= 1) occurs in   
+the situation of "maximum concentration" of the differentiation, where one  
+eigenvector explains all variation in the first dataset and another,        
+orthogonal eigenvector explains all variation in the second dataset.         
+Situations with more than one greater than zero eigenvalues per dataset     
+result in s1 values <1, even when the two eigenvector sets are mutually     
+orthogonal. This is due to the use of squared values in the calculation of  
+the s set of statistics. I am grateful to Dr Evan Remington for calling my  
+attention to this algorithm limitation.                                     
+                                                                            
+As an alternative for cases in which detecting matrix orthogonality is      
+important, covmatcom calculates absolute value-based versions of the same     
+statistics (s1Abs, s2Abs, s3Abs) not dependent on eigenvalue distribution  
+and producing maximum s1Abs values (s1Abs = 1) in all orthogonal            
+situations. The s1Abs values are decomposed in matrix orientation (s2Abs)   
+and matrix shape contributions (s3Abs) as follows:
+}
+\details{
+s1Abs = sum |vi11 - vi21| + sum |vi12 - vi22|
+
+s2Aux = sum |vi11 - vi22| + sum |vi12 - vi21|
+s3Aux = sum |vi11 - vi12| + sum |vi21 - vi22|
+
+s2Abs = s1Abs s2Aux / (s2Aux + s3Aux)
+s3Abs = s1Abs s3Aux / (s2Aux + s3Aux)
+
+where vijk is the amount of variance of eigenvector i from dataset k when 
+applied to data in dataset j, and sum is a summation from i=1 to i=n, the
+number of variables and eigenvectors in each compared dataset.
+_____________________________________________________________________________
 }
 \author{
 Carlos Garcia, \email{carlos.garcia.suarez@usc.es}
 }
 \references{
-Garcia C. 2012. A simple procedure for the comparison of covariance 
-  matrices. BMC Evolutionary Biology 12:1-17
+Garcia C. 2012. A simple procedure for the comparison of  
+   covariance matrices. BMC Evolutionary Biology 12:1-17
 }
 \keyword{comparison,}
 \keyword{covMatrix,}
